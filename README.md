@@ -196,7 +196,7 @@ LTO 用于优化内核，但有些时候会导致错误
 ## 4、修改内核
 ### ① 修改 fs/exec.c（在你fork的内核源码改！）
 
-找到下面这段话
+找到下面这段话(大概1916行)
 
 return retval;
 
@@ -215,7 +215,7 @@ https://github.com/kissunyeason/kernel_xiaomi_sm8250-immensity/commit/bd6276dd52
 
 还是这个文件
 
-找到
+找到(大概1923行)
 
 struct user_arg_ptr envp,
 
@@ -227,7 +227,7 @@ int flags)
 
 return __do_execve_file(fd, filename, argv, envp, flags, NULL);
 
-插入
+之间插入
 
 ksu_handle_execveat(&fd, &filename, &argv, &envp, &flags);
 
