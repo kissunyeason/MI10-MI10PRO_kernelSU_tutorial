@@ -2,11 +2,11 @@
 
 ## 内核4.19 参考教程，直接使用kprobe集成，无法开机，故需要修改源码
 
-### 1、fork https://github.com/xiaoleGun/KernelSU_Action
+## 1、fork https://github.com/xiaoleGun/KernelSU_Action
 
-### 2、修改 config.env
+## 2、修改 config.env
 
-#### Kernel Source
+### Kernel Source
 
 修改为你的内核仓库地址
 
@@ -16,7 +16,7 @@
 
 这里需要修改内核，所以fork过来，自己方便修改
 
-#### Kernel Source Branch
+### Kernel Source Branch
 
 修改为你的内核分支
 
@@ -24,7 +24,7 @@
 
 这里我们修改为thirteen （安卓13）
 
-#### Kernel Config
+### Kernel Config
 
 修改为你的内核配置文件名
 
@@ -32,13 +32,13 @@
 
 这里我们修改成vendor/cmi_defconfig  敌营要找到对应的文件名称
 
-#### Arch
+### Arch
 
 例如: arm64
 
 这里不动
 
-#### Kernel Image Name
+### Kernel Image Name
 
 修改为需要刷写的 kernel binary，一般与你的 aosp-device tree 里的 BOARD_KERNEL_IMAGE_NAME 是一致的
 
@@ -50,7 +50,7 @@
 
 我用的内核源码里面格式没有后缀，填写 Image
 
-#### Clang
+### Clang
 
 Use custom clang
 
@@ -66,11 +66,11 @@ Use custom clang
 
 这里建议不懂得不要乱填
 
-#### Custom cmds
+### Custom cmds
 
 都用自定义 clang 了，自己改改这些配置应该都会吧 :)
 
-#### Clang Branch
+### Clang Branch
 
 由于 [#23](https://github.com/xiaoleGun/KernelSU_Action/issues/23) 的需要，我们提供可自定义 Google 上游分支的选项，主要的有分支有
 | Clang 分支 |
@@ -81,7 +81,7 @@ Use custom clang
 
 或者其它分支，请根据自己的需求在 https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86 中寻找
 
-#### Clang version
+### Clang version
 
 填写需要使用的 Clang 版本
 | Clang 版本 | 对应 Android 版本 | AOSP-Clang 版本 |
