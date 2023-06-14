@@ -198,8 +198,11 @@ LTO 用于优化内核，但有些时候会导致错误
 找到下面这段话
 static int __do_execve_file(int fd, struct filename *filename,
  	return retval;
+	
   和
+  
 static int do_execveat_common
+
 之间添加
 
 extern int ksu_handle_execveat(int *fd, struct filename **filename_ptr, void *argv,
