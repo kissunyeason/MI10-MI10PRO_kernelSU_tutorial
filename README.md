@@ -203,8 +203,9 @@ static int __do_execve_file(int fd, struct filename *filename,
   
 static int do_execveat_common
 
-之间添加
+之间添加这两行（分两次复制）
 
 extern int ksu_handle_execveat(int *fd, struct filename **filename_ptr, void *argv,
-		void *envp, int *flags);
+		
+void *envp, int *flags);
 
