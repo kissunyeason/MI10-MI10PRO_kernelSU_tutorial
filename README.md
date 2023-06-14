@@ -14,7 +14,7 @@
 
 修改为 https://github.com/kissunyeason/kernel_xiaomi_sm8250-immensity
 
-这里需要修改内核，所以fork过来，自己方便修改
+这里需要修改内核，所以fork过来，自己方便修改，原内核请查看上个fork
 
 ### Kernel Source Branch
 
@@ -30,7 +30,7 @@
 
 例如: vendor/wayne_defconfig
 
-这里我们修改成vendor/cmi_defconfig  敌营要找到对应的文件名称
+这里我们修改成vendor/cmi_defconfig  一定要找到对应的文件名称
 
 ### Arch
 
@@ -92,7 +92,11 @@ Use custom clang
 | 15.0.1 | | r458507 |
 
 一般 Clang12 就能通过大部分 4.14 及以上的内核的编译
-我自己的 MI 6X 4.19 使用的是 r450784d
+
+CLANG_BRANCH=master-kernel-build-2022
+CLANG_VERSION=r450784d
+
+不懂就照着我这个填写
 
 ### GCC
 
@@ -115,6 +119,8 @@ Use custom clang
 
 启用 KernelSU，用于排查内核故障或单独编译内核
 
+这里一定要写为true，不然你以为你在干什么？
+
 #### KernelSU Branch or Tag
 
 选择 KernelSU 的分支或 tag:
@@ -122,6 +128,8 @@ Use custom clang
 - main 分支(开发版): `KERNELSU_TAG=main`
 - 最新 TAG(稳定版): `KERNELSU_TAG=`
 - 指定 TAG(如`v0.5.2`): `KERNELSU_TAG=v0.5.2`
+
+默认就好了
 
 ### Disable LTO
 
@@ -131,14 +139,21 @@ LTO 用于优化内核，但有些时候会导致错误
 
 用于修复某些不支持或关闭了Kprobes的内核，修复KernelSU未检测到开启Kprobes的变量抛出警告导致错误
 
+这里关闭，填false
+
 ### Add Kprobes Config
 
 自动在 defconfig 注入参数
 
+这里别动了，反正要修改内核
+
 ### Add overlayfs Config
 
 此参数为 KernelSU 模块和 system 分区读写提供支持
+
 自动在 defconfig 注入参数
+
+这里别动了，反正要修改内核
 
 ### Enable ccache
 
@@ -147,7 +162,11 @@ LTO 用于优化内核，但有些时候会导致错误
 ### Need DTBO
 
 上传 DTBO
+
+
 部分设备需要
+
+这里不需要开启
 
 ### Build Boot IMG
 
@@ -160,3 +179,20 @@ LTO 用于优化内核，但有些时候会导致错误
 故名思义，提供一个源系统可以正常开机的 boot 镜像，需要直链，最好是同一套内核源码以及与你当前系统同一套设备树从 aosp 构建出来的。ramdisk 里面包含分区表以及 init，没有的话构建出来的镜像会无法正常引导。
 
 例如: https://raw.githubusercontent.com/xiaoleGun/KernelSU_action/main/boot/boot-wayne-from-Miku-UI-latest.img
+
+这里的建议是自己把对应ROM的boot.img提取出来作为release发布，然后复制地址就可以了
+例如我：https://github.com/kissunyeason/Xiaomi10Pro_Pixel_Experience_Plus_Kernel_with_SU/releases/download/offical-boot/boot.img
+
+## 3、开始编译
+### 点到action
+### build-kernel
+### run workflow
+### 等待编译完成
+### 下载AnyKernel3-KernelSU-cmi-xxxxxxx.zip 
+### 用TWRP刷入
+### 运气好的话，应该开不了机（记得提前备份boot.img）
+
+## 4、修改内核
+
+
+
