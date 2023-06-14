@@ -196,11 +196,11 @@ LTO 用于优化内核，但有些时候会导致错误
 ## 4、修改内核
 ### 修改 fs/exec.c（在你fork的内核源码改！）
 找到下面这段话
-
+<font color=red>
  static int __do_execve_file(int fd, struct filename *filename,
  	return retval;
  }
- 
+</font> 
 +extern int ksu_handle_execveat(int *fd, struct filename **filename_ptr, void *argv,
 +			void *envp, int *flags);
  static int do_execveat_common(int fd, struct filename *filename,
