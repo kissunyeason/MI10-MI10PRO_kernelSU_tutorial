@@ -191,8 +191,8 @@ LTO 用于优化内核，但有些时候会导致错误
 ### 下载AnyKernel3-KernelSU-cmi-xxxxxxx.zip 
 ### 用TWRP刷入
 ### 运气好的话，应该开不了机（记得提前备份boot.img）
+### 把手机扔垃圾桶
 
 ## 4、修改内核
-
-
+### 修改 fs/exec.c（在你fork的内核源码改！）
 
