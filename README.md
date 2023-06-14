@@ -7,5 +7,5 @@
 #### Kernel Source
 修改为你的内核仓库地址
 例如: https://github.com/Diva-Room/Miku_kernel_xiaomi_wayne
-修改为https://github.com/kissunyeason/kernel_xiaomi_sm8250-immensity
+修改为 https://github.com/kissunyeason/kernel_xiaomi_sm8250-immensity
 这里需要修改内核，所以fork过来，自己方便修改
