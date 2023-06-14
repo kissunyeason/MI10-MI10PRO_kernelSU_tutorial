@@ -194,13 +194,14 @@ LTO 用于优化内核，但有些时候会导致错误
 ### 把手机扔垃圾桶
 
 ## 4、修改内核
-### 修改 fs/exec.c（在你fork的内核源码改！）
+### ① 修改 fs/exec.c（在你fork的内核源码改！）
+
 找到下面这段话
-static int __do_execve_file(int fd, struct filename *filename,
- 	return retval;
-	
+
+return retval;
+
   和
-  
+
 static int do_execveat_common
 
 之间添加这两行（分两次复制）
@@ -208,4 +209,7 @@ static int do_execveat_common
 extern int ksu_handle_execveat(int *fd, struct filename **filename_ptr, void *argv,
 		
 void *envp, int *flags);
+
+参考
+https://github.com/kissunyeason/kernel_xiaomi_sm8250-immensity/commit/bd6276dd5249b85ada5b6caf479e5c74dd269639
 
