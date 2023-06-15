@@ -275,3 +275,73 @@ const struct cred *old_cred;
 u_handle_faccessat(&dfd, &filename, &mode, NULL);
 ```
 参照 https://github.com/kissunyeason/kernel_xiaomi_sm8250-immensity/commit/c2e8afafdd7ef3c5b706b6433c82ee00e7154996?diff=split
+
+### ③修改 fs/read_write.c（在你fork的内核源码改！）
+找到这行（大概436行）
+```C
+EXPORT_SYMBOL(kernel_read);
+ 
+```
+和
+```C
+ssize_t vfs_read(struct file *file, char __user *buf, size_t count, loff_t *pos)
+ {
+ 	ssize_t ret;
+```
+在之间插入
+```C
+extern int ksu_handle_vfs_read(struct file **file_ptr, char __user **buf_ptr,
+			size_t *count_ptr, loff_t **pos);
+```
+紧接着下面
+在
+```C
+ssize_t ret;
+```
+和
+```C
+
+	if (!(file->f_mode & FMODE_READ))
+		return -EBADF;
+```
+之间插入
+```C
+ksu_handle_vfs_read(&file, &buf, &count, &pos);
+```
+参照：https://github.com/kissunyeason/kernel_xiaomi_sm8250-immensity/commit/0af0751989211c9fbcd6480e1a10b91a9b600477?diff=split
+
+### ④ 修改 fs/fs/stat.c（在你fork的内核源码改！）
+
+找到这段（大概150行）
+```C
+EXPORT_SYMBOL(vfs_statx_fd);
+```
+和
+```C
+
+/**
+ * vfs_statx - Get basic and extra attributes by filename
+```
+之间插入
+```C
+extern int ksu_handle_stat(int *dfd, const char __user **filename_user, int *flags);
+```
+
+在这里（大概170行）
+```C
+struct path path;
+	int error = -EINVAL;
+	unsigned int lookup_flags = LOOKUP_FOLLOW | LOOKUP_AUTOMOUNT;
+	ksu_handle_stat(&dfd, &filename, &flags);
+```
+和
+```C
+if ((flags & ~(AT_SYMLINK_NOFOLLOW | AT_NO_AUTOMOUNT |
+		       AT_EMPTY_PATH | KSTAT_QUERY_FLAGS)) != 0)
+		return -EINVAL;
+```
+之间插入
+```C
+ksu_handle_stat(&dfd, &filename, &flags);
+```
+参照：https://github.com/kissunyeason/kernel_xiaomi_sm8250-immensity/commit/03271214854e33efe56142ddfa12c830addcb32b?diff=split
