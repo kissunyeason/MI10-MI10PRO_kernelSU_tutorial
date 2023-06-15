@@ -199,21 +199,21 @@ LTO 用于优化内核，但有些时候会导致错误
 找到下面这段话(大概1916行)
 
 ```C
-putname(filename);/
+putname(filename);
 	return retval;
 ```
 
 
-
   和
-
+```C
 static int do_execveat_common
+```
 
-之间添加这两行（分两次复制）
-
+之间添加这两行
+```C
 extern int ksu_handle_execveat(int *fd, struct filename **filename_ptr, void *argv,
-		
 void *envp, int *flags);
+```C
 
 参考
 https://github.com/kissunyeason/kernel_xiaomi_sm8250-immensity/commit/bd6276dd5249b85ada5b6caf479e5c74dd269639
