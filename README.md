@@ -26,7 +26,7 @@
 
 修改为你的内核配置文件名
 
-这里我们修改成[vendor/cmi_defconfig](https://github.com/kissunyeason/kernel_xiaomi_sm8250-immensity/blob/thirteen/arch/arm64/configs/cmi_stock-defconfig)  
+这里我们修改成[cmi_stock-defconfig](https://github.com/kissunyeason/kernel_xiaomi_sm8250-immensity/blob/thirteen/arch/arm64/configs/cmi_stock-defconfig)  
 
 一定要找到对应的文件名称
 
