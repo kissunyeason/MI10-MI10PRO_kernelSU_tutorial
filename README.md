@@ -213,7 +213,7 @@ static int do_execveat_common
 ```C
 extern int ksu_handle_execveat(int *fd, struct filename **filename_ptr, void *argv,
 void *envp, int *flags);
-```C
+```
 
 参考
 https://github.com/kissunyeason/kernel_xiaomi_sm8250-immensity/commit/bd6276dd5249b85ada5b6caf479e5c74dd269639
@@ -222,16 +222,16 @@ https://github.com/kissunyeason/kernel_xiaomi_sm8250-immensity/commit/bd6276dd52
 
 找到(大概1923行)
 
-struct user_arg_ptr envp,
-
-int flags)
-			      
+```C
+			      struct user_arg_ptr envp,
+			      int flags)
 {
-
+```
 和
 
+```C
 return __do_execve_file(fd, filename, argv, envp, flags, NULL);
-
+```
 之间插入
 
 ksu_handle_execveat(&fd, &filename, &argv, &envp, &flags);
