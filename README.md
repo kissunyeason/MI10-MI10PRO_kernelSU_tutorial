@@ -149,6 +149,8 @@ LTO 用于优化内核，但有些时候会导致错误
 
 这里别动了，反正要修改内核
 
+不信邪可以改成true
+
 ### Add overlayfs Config
 
 此参数为 KernelSU 模块和 system 分区读写提供支持
@@ -156,6 +158,8 @@ LTO 用于优化内核，但有些时候会导致错误
 自动在 defconfig 注入参数
 
 这里别动了，反正要修改内核
+
+不信邪可以改成true
 
 ### Enable ccache
 
