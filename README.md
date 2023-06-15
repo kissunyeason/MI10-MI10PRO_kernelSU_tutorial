@@ -276,7 +276,7 @@ u_handle_faccessat(&dfd, &filename, &mode, NULL);
 ```
 参照 https://github.com/kissunyeason/kernel_xiaomi_sm8250-immensity/commit/c2e8afafdd7ef3c5b706b6433c82ee00e7154996?diff=split
 
-### ③修改 fs/read_write.c（在你fork的内核源码改！）
+### ③ 修改 fs/read_write.c（在你fork的内核源码改！）
 找到这行（大概436行）
 ```C
 EXPORT_SYMBOL(kernel_read);
@@ -353,7 +353,7 @@ ksu_handle_stat(&dfd, &filename, &flags);
 ### 等待编译完成
 ### 下载AnyKernel3-KernelSU-cmi-xxxxxxx.zip 
 ### 用TWRP刷入
-### 运气好的话，这次应该开不了机（记得提前备份boot.img）
+### 运气好的话，这次应该开机了（记得提前备份boot.img）
 ### 开不了机
 ### 直接下载我编译好的
 ### 开不了机
