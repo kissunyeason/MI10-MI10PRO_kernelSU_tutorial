@@ -2,37 +2,33 @@
 
 ## （其他机型和系统也可以参照，主要是后面修改内核的部分）
 
-## 内核4.19 参考教程，直接使用kprobe集成，无法开机，故需要修改源码
+## 内核4.19 参考教程，直接使用kprobe集成，无法开机，故需要修改内核源码
 
 ## 1、fork https://github.com/xiaoleGun/KernelSU_Action
 
-## 2、修改 config.env
+## 2、修改 [config.env](https://github.com/kissunyeason/Xiaomi10Pro_Pixel_Experience_Plus_Kernel_with_SU/blob/main/config.env)
 
 ### Kernel Source
 
 修改为你的内核仓库地址
 
-例如: https://github.com/Diva-Room/Miku_kernel_xiaomi_wayne
+修改为https://github.com/kissunyeason/kernel_xiaomi_sm8250-immensity
 
-修改为 https://github.com/kissunyeason/kernel_xiaomi_sm8250-immensity
-
-这里需要修改内核，所以fork过来，自己方便修改，原内核请查看上个fork
+这里需要修改内核，所以自己fork一个过来，自己方便修改，原内核请查看上个fork
 
 ### Kernel Source Branch
 
 修改为你的内核分支
 
-例如: TDA
-
-这里我们修改为thirteen （安卓13）
+这里我们修改为[thirteen](https://github.com/kissunyeason/kernel_xiaomi_sm8250-immensity/tree/thirteen) （安卓13）
 
 ### Kernel Config
 
 修改为你的内核配置文件名
 
-例如: vendor/wayne_defconfig
+这里我们修改成[vendor/cmi_defconfig](https://github.com/kissunyeason/kernel_xiaomi_sm8250-immensity/blob/thirteen/arch/arm64/configs/cmi_stock-defconfig)  
 
-这里我们修改成vendor/cmi_defconfig  一定要找到对应的文件名称
+一定要找到对应的文件名称
 
 ### Arch
 
