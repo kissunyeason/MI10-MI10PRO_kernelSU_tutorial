@@ -4,6 +4,8 @@
 
 ## 内核4.19 参考教程，直接使用kprobe集成，无法开机，故需要修改内核源码
 
+# 不想看教程的直接拉到底，看第5条，自己运行一个，或者下载已经编译好的
+
 ## 1. fork https://github.com/xiaoleGun/KernelSU_Action
 
 ## 2. 修改 [config.env](https://github.com/kissunyeason/Xiaomi10Pro_Pixel_Experience_Plus_Kernel_with_SU/blob/main/config.env)
