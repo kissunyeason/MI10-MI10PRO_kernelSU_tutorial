@@ -4,9 +4,9 @@
 
 ## 内核4.19 参考教程，直接使用kprobe集成，无法开机，故需要修改内核源码
 
-## 1、fork https://github.com/xiaoleGun/KernelSU_Action
+## 1. fork https://github.com/xiaoleGun/KernelSU_Action
 
-## 2、修改 [config.env](https://github.com/kissunyeason/Xiaomi10Pro_Pixel_Experience_Plus_Kernel_with_SU/blob/main/config.env)
+## 2. 修改 [config.env](https://github.com/kissunyeason/Xiaomi10Pro_Pixel_Experience_Plus_Kernel_with_SU/blob/main/config.env)
 
 ### Kernel Source
 
@@ -186,32 +186,29 @@ LTO 用于优化内核，但有些时候会导致错误
 这里的建议是自己把对应ROM的boot.img提取出来作为release发布，然后复制地址就可以了
 例如我：https://github.com/kissunyeason/Xiaomi10Pro_Pixel_Experience_Plus_Kernel_with_SU/releases/download/offical-boot/boot.img
 
-## 3、开始编译
-### 点到action
-### build-kernel
-### run workflow
-### 等待编译完成
-### 下载AnyKernel3-KernelSU-cmi-xxxxxxx.zip 
-### 用TWRP刷入
-### 运气好的话，应该开不了机（记得提前备份boot.img）
-### 把手机扔垃圾桶
+## 4. 开始编译
+### 3.1 点到 [action](https://github.com/kissunyeason/Xiaomi10Pro_Pixel_Experience_Plus_Kernel_with_SU/actions) 
+### 3.2 [build-kernel](https://github.com/kissunyeason/Xiaomi10Pro_Pixel_Experience_Plus_Kernel_with_SU/actions/workflows/build-kernel.yml)
+### 3.3 run workflow(右边)
+### 3.4 等待编译完成
+### 3.5 下载AnyKernel3-KernelSU-cmi-xxxxxxx.zip 
+### 3.6 用TWRP刷入
+### 3.7 运气好的话，应该开不了机（记得提前备份boot.img）
+### 3.8 把手机扔垃圾桶
 
-## 4、修改内核
-### ① 修改 fs/exec.c（在你fork的内核源码改！）
+## 4. 修改内核
+### 4.1 修改 fs/exec.c（在你fork的内核源码改！）
 
 找到下面这段话(大概1916行)
-
 ```C
 putname(filename);
 return retval;
 ```
-
-
   和
+  
 ```C
 static int do_execveat_common
 ```
-
 之间添加这两行
 ```C
 extern int ksu_handle_execveat(int *fd, struct filename **filename_ptr, void *argv,
@@ -223,25 +220,21 @@ void *envp, int *flags);
 还是这个文件
 
 找到(大概1923行)
-
 ```C
 struct user_arg_ptr envp,
 int flags)
 {
 ```
 和
-
 ```C
 return __do_execve_file(fd, filename, argv, envp, flags, NULL);
 ```
 之间插入
-
 ```C
 ksu_handle_execveat(&fd, &filename, &argv, &envp, &flags);
 ```
 参照[这里](https://github.com/kissunyeason/kernel_xiaomi_sm8250-immensity/commit/a0dfa44cbe79a2a532aadcfd33919e38ad753f26)
-
-### ② 修改 fs/open.c（在你fork的内核源码改！）
+### 4.2 修改 fs/open.c（在你fork的内核源码改！）
 
 找到这段（大概349行）
 ```C
@@ -276,7 +269,7 @@ u_handle_faccessat(&dfd, &filename, &mode, NULL);
 ```
 参照[这里](https://github.com/kissunyeason/kernel_xiaomi_sm8250-immensity/commit/c2e8afafdd7ef3c5b706b6433c82ee00e7154996?diff=split)
 
-### ③ 修改 fs/read_write.c（在你fork的内核源码改！）
+### 4.3 修改 fs/read_write.c（在你fork的内核源码改！）
 找到这行（大概436行）
 ```C
 EXPORT_SYMBOL(kernel_read);
@@ -310,7 +303,7 @@ ksu_handle_vfs_read(&file, &buf, &count, &pos);
 ```
 参照[这里](https://github.com/kissunyeason/kernel_xiaomi_sm8250-immensity/commit/0af0751989211c9fbcd6480e1a10b91a9b600477?diff=split)
 
-### ④ 修改 fs/fs/stat.c（在你fork的内核源码改！）
+### 4.4 修改 fs/fs/stat.c（在你fork的内核源码改！）
 
 找到这段（大概150行）
 ```C
@@ -346,18 +339,18 @@ ksu_handle_stat(&dfd, &filename, &flags);
 ```
 参照[这里](https://github.com/kissunyeason/kernel_xiaomi_sm8250-immensity/commit/03271214854e33efe56142ddfa12c830addcb32b?diff=split)
 
-## 5、开始编译
-### 点到action
-### build-kernel
-### run workflow
-### 等待编译完成
-### 下载AnyKernel3-KernelSU-cmi-xxxxxxx.zip 
-### 用TWRP刷入
-### 运气好的话，这次应该开机了（记得提前备份boot.img）
-### 开不了机
-### 直接下载我编译好的
-### 开不了机
-### 手机扔垃圾桶
+## 5. 开始编译
+### 5.1 点到 [action](https://github.com/kissunyeason/Xiaomi10Pro_Pixel_Experience_Plus_Kernel_with_SU/actions) 
+### 5.2 [build-kernel](https://github.com/kissunyeason/Xiaomi10Pro_Pixel_Experience_Plus_Kernel_with_SU/actions/workflows/build-kernel.yml)
+### 5.3 run workflow
+### 5.4 等待编译完成
+### 5.5 下载AnyKernel3-KernelSU-cmi-xxxxxxx.zip 
+### 5.6 用TWRP刷入
+### 5.7 运气好的话，这次应该开机了（记得提前备份boot.img）
+### 5.8 开不了机
+### 5.9 直接下载我编译好的
+### 5.10 开不了机
+### 5.11 手机扔垃圾桶
 
 ## 感谢
 
