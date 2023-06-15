@@ -345,3 +345,16 @@ if ((flags & ~(AT_SYMLINK_NOFOLLOW | AT_NO_AUTOMOUNT |
 ksu_handle_stat(&dfd, &filename, &flags);
 ```
 参照：https://github.com/kissunyeason/kernel_xiaomi_sm8250-immensity/commit/03271214854e33efe56142ddfa12c830addcb32b?diff=split
+
+## 5、开始编译
+### 点到action
+### build-kernel
+### run workflow
+### 等待编译完成
+### 下载AnyKernel3-KernelSU-cmi-xxxxxxx.zip 
+### 用TWRP刷入
+### 运气好的话，这次应该开不了机（记得提前备份boot.img）
+### 开不了机
+### 直接下载我编译好的
+### 开不了机
+### 手机扔垃圾桶
