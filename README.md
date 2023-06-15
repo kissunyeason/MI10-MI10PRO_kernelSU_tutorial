@@ -91,7 +91,7 @@ Use custom clang
 
 一般 Clang12 就能通过大部分 4.14 及以上的内核的编译
 
-```
+```C
 CLANG_BRANCH=master-kernel-build-2022
 CLANG_VERSION=r450784d
 ```
