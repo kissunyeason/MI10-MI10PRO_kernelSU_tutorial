@@ -215,7 +215,7 @@ extern int ksu_handle_execveat(int *fd, struct filename **filename_ptr, void *ar
 void *envp, int *flags);
 ```
 
-参考
+参照
 https://github.com/kissunyeason/kernel_xiaomi_sm8250-immensity/commit/bd6276dd5249b85ada5b6caf479e5c74dd269639
 
 还是这个文件
@@ -241,3 +241,37 @@ ksu_handle_execveat(&fd, &filename, &argv, &envp, &flags);
 
 https://github.com/kissunyeason/kernel_xiaomi_sm8250-immensity/commit/a0dfa44cbe79a2a532aadcfd33919e38ad753f26
 
+### ② 修改 fs/open.c（在你fork的内核源码改！）
+
+找到这段（大概349行）
+```C
+	return ksys_fallocate(fd, mode, offset, len);
+}
+```
+和
+```C
+/*
+ * access() needs to use the real uid/gid, not the effective uid/gid.
+```
+之间插入
+```C
+extern int ksu_handle_faccessat(int *dfd, const char __user **filename_user, int *mode,
+			 int *flags);
+```
+
+找到（大概357行）
+```C
+long do_faccessat(int dfd, const char __user *filename, int mode)
+{
+```
+和
+```C
+const struct cred *old_cred;
+	struct cred *override_cred;
+	struct path path;
+```
+之间插入
+```C
+u_handle_faccessat(&dfd, &filename, &mode, NULL);
+```
+参照 https://github.com/kissunyeason/kernel_xiaomi_sm8250-immensity/commit/c2e8afafdd7ef3c5b706b6433c82ee00e7154996?diff=split
