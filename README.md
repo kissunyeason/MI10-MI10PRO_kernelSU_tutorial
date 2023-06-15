@@ -234,8 +234,9 @@ return __do_execve_file(fd, filename, argv, envp, flags, NULL);
 ```
 之间插入
 
+```C
 ksu_handle_execveat(&fd, &filename, &argv, &envp, &flags);
-
+```
 参照
 
 https://github.com/kissunyeason/kernel_xiaomi_sm8250-immensity/commit/a0dfa44cbe79a2a532aadcfd33919e38ad753f26
