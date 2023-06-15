@@ -199,7 +199,8 @@ LTO 用于优化内核，但有些时候会导致错误
 找到下面这段话(大概1916行)
 
 ```C
-return retval;
+putname(filename);/
+	return retval;
 ```
 
 
