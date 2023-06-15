@@ -358,3 +358,15 @@ ksu_handle_stat(&dfd, &filename, &flags);
 ### 直接下载我编译好的
 ### 开不了机
 ### 手机扔垃圾桶
+
+## 感谢
+
+- [AnyKernel3](https://github.com/osm0sis/AnyKernel3)
+- [AOSP](https://android.googlesource.com)
+- [KernelSU](https://github.com/tiann/KernelSU)
+- [xiaoxindada](https://github.com/xiaoxindada)
+- [xiaoleGun](https://github.com/xiaoleGun/KernelSU_Action)
+- [JayanthKandula](https://github.com/JayanthKandula/kernel_xiaomi_sm8250-immensity)
+- @summ919
+- @魔法师咖波
+- @dadaadsda
